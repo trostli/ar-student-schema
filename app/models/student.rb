@@ -3,6 +3,11 @@ require 'date'
 
 class Student < ActiveRecord::Base
 
+  validates :email, :uniqueness => true
+  validates :email, :format => { :with => /\w+[@]\w+[.]\w.+/ }
+  validates :age, :numericality => { :greater_than => 4}
+  validates :phone, :format => { :with => /\d{3}.*\d{3}.*\d{4}/ }
+
   def name
     self.first_name + " " + self.last_name
   end
